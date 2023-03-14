@@ -3,18 +3,21 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\DTO\ProductsDTO;
-use App\Models\ProductsModel;
+
+use App\Response\ProductsResponse;
+use Exception;
 
 class Product extends BaseController
 {
     public function index()
     {
-        // $productsList = new ProductsModel();
-        // $data = $productsList->findAll();
-
-        $productsList = new ProductsDTO();
-        $data = $productsList->storage();
-        return json_encode($data);
+        try {
+            $response = new ProductsResponse();
+            $response->setStatus(200);
+            return $response->pageableProducts(1, 6);
+        } catch(Exception $error) {
+            $response->setStatus(500);
+            return $response->error($error);
+        }
     }
 }
