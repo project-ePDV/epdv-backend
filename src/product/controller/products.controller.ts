@@ -13,10 +13,7 @@ export class ProductsController {
   async getProducts(@Query() params: ParamsDTO, @Res() res: Response) {
     const { page, size } = { ...params };
 
-    const [products, total] = await this.productsService.getProducts(
-      page,
-      size,
-    );
+    const [products, total] = await this.productsService.getProducts(params);
 
     const records = products.map(
       (product) =>

@@ -1,19 +1,33 @@
-import { IsNotEmpty, IsNumberString, IsOptional } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumberString,
+  IsOptional,
+} from 'class-validator';
+
+enum filterProperty {
+  amount,
+  price,
+}
 
 export class ParamsDTO {
   @IsNotEmpty()
   @IsNumberString()
   page: number;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumberString()
   size: number;
 
   @IsOptional()
-  @IsNumberString()
-  minPrice: number;
+  @IsEnum(filterProperty)
+  filter: filterProperty;
 
   @IsOptional()
   @IsNumberString()
-  maxPrice: number;
+  minValue: number;
+
+  @IsOptional()
+  @IsNumberString()
+  maxValue: number;
 }
