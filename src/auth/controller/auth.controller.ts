@@ -6,13 +6,12 @@ import {
   HttpStatus,
   UseGuards,
   Get,
-  Req,
   Res,
 } from '@nestjs/common';
 import { AuthService } from '../service/auth.service';
 import { AuthGuard } from '../guard/authGuard.guard';
 import { SignInDTO } from '../dto/signIn.dto';
-import { SignInResponseDTO } from '../dto/signinResponse.dto';
+import { SignInResponseDTO } from '../dto/signInResponse.dto';
 import { Response, Request } from 'express';
 
 @Controller('auth')
